@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Txt File Downlload</title>
+  </head>
+  <body>
+    <h1>helllo</h1>
+    <input type="text" id="filename" placeholder="enter file name"/>
+    <textarea name="text" id="text" cols="30" rows="10"> </textarea>
+
+    <button id="btn">Download</button>
+    <script>
+      const btn = document.getElementById("btn");
+      const filename = document.getElementById("filename");
+      const text = document.getElementById("text");
+
+      function download(filename, text) {
+        const element = document.createElement("a");
+        const blob = new Blob([text], {
+          type: "plain/txt",
+        });
+        const fileurl = URL.createObjectURL(blob);
+        element.setAttribute('href', fileurl);
+        element.setAttribute('download',filename);
+        element.style.display = 'none';
+        element.click()
+      }
+
+      btn.addEventListener("click", () => {
+        download(filename.value, text.value);
+      });
+    </script>
+  </body>
+</html>
